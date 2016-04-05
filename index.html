@@ -22,17 +22,30 @@
             </ul>
         </nav>
 
-        <section id='login' class='view'>
+        <section id='login' class='login'>
             <h2>GitHub API Login</h2>
-            <form id='login-form' action=''>
+            <form id='login-form' action='#profile'>
                 <input id='login-field' type='text'> <input type='submit' class='btn btn-primary'>
             </form>
+        </section>
+
+        <section id='profile' class='view'>
+            <ul>
+
+            </ul>
+        </section>
+
+        <section id='repos' class='view'>
+            <ul>
+
+            </ul>
         </section>
 
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src='js/login.js'></script>
         <script src='js/profile.js'></script>
-        <!-- <script> init function will go here </script> -->
+        <script src='js/profile.js'></script>
+        <script>window.ght.init();</script>
     </body>
 </html>
