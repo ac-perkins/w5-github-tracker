@@ -4,6 +4,10 @@
 ght.ghToken = null;
 ght.ghUser = {};
 
+window.addEventListener('hashchange', function hashNav() {
+        doNav();
+    });
+
 $('#login-form').submit(function (event) {
     event.preventDefault();
     ght.ghToken = $('#login-field').val();
@@ -58,20 +62,25 @@ function doNav() {
         // $('.view').hide();
         var newView = $( window.location.hash ).show();
 
-        $('nav li').removeClass('active');
+        // $('nav li').removeClass('active');
 
-        $('nav a[href="' + window.location.hash + '"]').closest('li').addClass('active');
+        // $('nav a[href="' + window.location.hash + '"]').closest('li').addClass('active');
 
         if (newView.length === 0) {
-            // if they try to load a bad view, default to view-1!
+            // if they try to load a bad view, default to login!
+            console.log('is it here?');
             window.location.hash = '#login';
         } else {
             // do stuff the view needs
 
+            console.log('or is it here?');
+
             var viewName = window.location.hash.substr(1);
+            console.log(viewName);
+
             if (ght[viewName] && ght[viewName].load) {
                 // ns['view-1'].load();
-                ght[ viewName ].load();
+                ght[viewName].load();
             }
         }
     }
