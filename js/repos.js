@@ -6,21 +6,35 @@
 
   ght.repos.load = function loadRepos() {
       // Do an ajax call to get article data
+      $('#repos-tbody').empty();
+      ght.reposInfo = [];
 
       $.ajax({
           type: 'GET',
           url: 'https://api.github.com/user/repos',
           dataType: 'json',
-          context: this,
           headers: {
               Authorization: 'token ' + ght.ghToken
           },
           success: function getGHRepoData(data) {
             console.log(data);
 
+            data.forEach(function(element) {
+                ght.reposInfo.push({
+                  name: element.name,
+                  url: element.html_url,
+                  stars: element.stargazers_count,
+                  open_issues: element.open_issues,
+                  issues_url: element.issues_url,
+                  description: element.description,
+                  forks: element.forks,
+                  created: element.created_at
+                });
 
-            $('#login').hide();
+            });
+            console.log(ght.repos);
 
+            appendRepos();
             // var nextView = $(this).attr('action');
             //
             // // maybe... if the Ajax call is succesful...
@@ -47,6 +61,20 @@
 
 
 // });
+
+
+      function appendRepos() {
+        console.log(ght.repos);
+        ght.reposInfo.forEach(function(element) {
+          // console.log('hi', element);
+          $('#repos-tbody')
+              .append( $('<tr>')
+                  .append( $('<td>').text(element.name) )
+                  .append( $('<td>').text(element.stars) )
+                  .append( $('<td>').text(element.open_issues) )
+              );
+        });
+      }
 
 
 

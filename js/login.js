@@ -4,9 +4,6 @@
 ght.ghToken = null;
 ght.ghUser = {};
 
-window.addEventListener('hashchange', function hashNav() {
-        doNav();
-    });
 
 $('#login-form').submit(function (event) {
     event.preventDefault();
@@ -49,7 +46,7 @@ $('#login-form').submit(function (event) {
 
         window.location.hash = nextView;
 
-        ght.appendProfile();
+        // ght.appendProfile();
       },
       error: function handleErrors(xhr) {
         console.log( xhr );
@@ -58,38 +55,7 @@ $('#login-form').submit(function (event) {
 });
 
 
-function doNav() {
-        // $('.view').hide();
-        var newView = $( window.location.hash ).show();
 
-        // $('nav li').removeClass('active');
-
-        // $('nav a[href="' + window.location.hash + '"]').closest('li').addClass('active');
-
-        if (newView.length === 0) {
-            // if they try to load a bad view, default to login!
-            console.log('is it here?');
-            window.location.hash = '#login';
-        } else {
-            // do stuff the view needs
-
-            console.log('or is it here?');
-
-            var viewName = window.location.hash.substr(1);
-            console.log(viewName);
-
-            if (ght[viewName] && ght[viewName].load) {
-                // ns['view-1'].load();
-                ght[viewName].load();
-            }
-        }
-    }
-
-
-    // navigate to a view when the page loads
-    ght.init = function() {
-        doNav();
-    };
 
 
   window.ght = ght;
