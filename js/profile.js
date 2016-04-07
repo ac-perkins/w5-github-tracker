@@ -22,6 +22,7 @@
             .append( $('<li>').text('Repos: ' + ght.ghUser.repos) )
             .append( $('<li>').text('Followers: ' + ght.ghUser.followers + ' (following ' + ght.ghUser.following + ')') )
             .append( $('<li>').text('Account created: ' + ght.ghUser.created) )
+            .append( $('<img>').attr( {src: ght.ghUser.avatar, class: 'avatar_img'} ) )
             ;
     };
 

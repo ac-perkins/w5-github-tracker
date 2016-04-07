@@ -55,9 +55,6 @@ $('#login-form').submit(function (event) {
 });
 
 
-
-
-
   window.ght = ght;
 
 })(window.ght || {});

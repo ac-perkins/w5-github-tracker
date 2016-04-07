@@ -5,7 +5,7 @@
   ght.repos = {};
 
   ght.repos.load = function loadRepos() {
-      // Do an ajax call to get article data
+
       $('#repos-tbody').empty();
       ght.reposInfo = [];
 
@@ -17,10 +17,10 @@
               Authorization: 'token ' + ght.ghToken
           },
           success: function getGHRepoData(data) {
-            console.log(data);
 
             data.forEach(function(element) {
                 ght.reposInfo.push({
+                  repo_id: element.id,
                   name: element.name,
                   url: element.html_url,
                   stars: element.stargazers_count,
@@ -32,7 +32,7 @@
                 });
 
             });
-            console.log(ght.repos);
+            console.log(ght.reposInfo);
 
             appendRepos();
             // var nextView = $(this).attr('action');
@@ -56,25 +56,28 @@
 
       console.log('loading repos');
 
-      // ght.appendProfile();
   };
-
-
-// });
 
 
       function appendRepos() {
         console.log(ght.repos);
         ght.reposInfo.forEach(function(element) {
-          // console.log('hi', element);
           $('#repos-tbody')
               .append( $('<tr>')
-                  .append( $('<td>').text(element.name) )
+                  .append( $('<td>')
+                      .append( $('<a>').attr( {href: '#repo_' + element.name} ).text(element.name) )
+                  )
                   .append( $('<td>').text(element.stars) )
                   .append( $('<td>').text(element.open_issues) )
               );
         });
       }
+
+      // $('#repos').on('click', '#repos-tbody a', function() {
+      //     var repoHashSplit = $(this).attr('href').substr(6);
+      //     console.log(repoHashSplit);
+      //     ght.repoHashSplit = repoHashSplit;
+      // });
 
 
 
