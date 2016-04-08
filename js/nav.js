@@ -21,18 +21,17 @@
               // if they try to load a bad view, default to login!    //login redirect
               window.location.hash = '#login';
           }
-          else if (ght[hashSplit[0]] && ght[hashSplit[0]].load) {
-              ght[hashSplit[0]].load(hashSplit[1]);
-          }
+          // else if (ght[hashSplit[0]] && ght[hashSplit[0]].load) {
+          //     ght[hashSplit[0]].load(hashSplit[1]);
+          // }
           else {
               // do stuff the view needs
 
               var viewName = window.location.hash.substr(1);
               console.log(viewName);
 
-              if (ght[viewName] && ght[viewName].load) {
-                  // ns['view-1'].load();
-                  ght[viewName].load();
+              if (ght[hashSplit[0]] && ght[hashSplit[0]].load) {
+                  ght[hashSplit[0]].load(hashSplit[1]);
               }
           }
       }

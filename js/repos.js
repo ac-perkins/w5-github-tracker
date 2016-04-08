@@ -60,13 +60,6 @@
         });
       }
 
-      // $('#repos').on('click', '#repos-tbody a', function() {
-      //     var repoHashSplit = $(this).attr('href').substr(6);
-      //     console.log(repoHashSplit);
-      //     ght.repoHashSplit = repoHashSplit;
-      // });
-
-
 
   window.ght = ght;
 

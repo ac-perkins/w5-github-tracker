@@ -9,12 +9,9 @@
         // console.log(ght.repoHashSplit);
         // $('#navbar').find('li#' + repo).remove();
 
-        if( $('#navbar').find('li#' + repo).length ) {
-            $('#navbar').find('li#' + repo).show();
-        }
-        else {
+
             ght._appendRepoDetailNav(repo);
-        }
+        
 
 
         console.log('how many?');
@@ -28,7 +25,7 @@
             headers: {
                 Authorization: 'token ' + ght.ghToken
             },
-            success: function getGHRepoData(data) {
+            success: function getGHRepoDetails(data) {
                 console.log(data);
 
                     ght.singleRepoInfo.id = data.id;
@@ -51,7 +48,6 @@
                         ght.singleRepoInfo.forks,
                         ght.singleRepoInfo.created
                     );
-              console.log(ght.reposInfo);
             },
             error: function handleErrors(xhr) {
               console.log( xhr );
