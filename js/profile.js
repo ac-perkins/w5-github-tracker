@@ -9,22 +9,31 @@
 
         console.log('loading profile');
         $('#profile ul').empty();
-        ght.appendProfile();
+        appendProfile(
+            ght.ghUser.url,
+            ght.ghUser.userName,
+            ght.ghUser.name,
+            ght.ghUser.repos,
+            ght.ghUser.followers,
+            ght.ghUser.following,
+            ght.ghUser.created,
+            ght.ghUser.avatar
+        );
     };
 
 
-    ght.appendProfile = function () {
+    function appendProfile(url, userName, name, repos, followers, following, created, avatar) {
         $('#profile ul')
             .append( $('<li>').text('Username: ')
-                .append( $('<a>').attr( {href: ght.ghUser.url, target: '_blank'} ).text(ght.ghUser.userName) )
+                .append( $('<a>').attr( {href: url, target: '_blank'} ).text(userName) )
             )
-            .append( $('<li>').text('Name: ' + ght.ghUser.name) )
-            .append( $('<li>').text('Repos: ' + ght.ghUser.repos) )
-            .append( $('<li>').text('Followers: ' + ght.ghUser.followers + ' (following ' + ght.ghUser.following + ')') )
-            .append( $('<li>').text('Account created: ' + ght.ghUser.created) )
-            .append( $('<img>').attr( {src: ght.ghUser.avatar, class: 'avatar_img'} ) )
+            .append( $('<li>').text('Name: ' + name) )
+            .append( $('<li>').text('Repos: ' + repos) )
+            .append( $('<li>').text('Followers: ' + followers + ' (following ' + following + ')') )
+            .append( $('<li>').text('Account created: ' + created) )
+            .append( $('<img>').attr( {src: avatar, class: 'avatar_img'} ) )
             ;
-    };
+    }
 
 
 

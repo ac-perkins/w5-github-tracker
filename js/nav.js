@@ -13,17 +13,18 @@
 
           $('nav a[href="' + window.location.hash + '"]').closest('li').addClass('active');
 
-          var hashSplit = window.location.hash.substr(1).split(/_(.+)?/)[1];
+          // var hashSplit = window.location.hash.substr(1).split('_');
+          var hashSplit = window.location.hash.substr(1).split(/_(.*)?/);
           console.log(hashSplit);
 
-          if (window.location.hash.substr(0, 6) === '#repo_') {
-              console.log('HASH SPLIT!');
-              ght.repoDetail.load("second-part-of-hash");
-
-          } else if (newView.length === 0 || !ght.ghToken) {
-              // if they try to load a bad view, default to login!
+          if (!ght.ghToken) {
+              // if they try to load a bad view, default to login!    //login redirect
               window.location.hash = '#login';
-          } else {
+          }
+          else if (ght[hashSplit[0]] && ght[hashSplit[0]].load) {
+              ght[hashSplit[0]].load(hashSplit[1]);
+          }
+          else {
               // do stuff the view needs
 
               var viewName = window.location.hash.substr(1);

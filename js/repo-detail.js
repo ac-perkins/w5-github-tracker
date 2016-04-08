@@ -1,21 +1,29 @@
 (function(ght) {
   'use strict';
 
-    ght.repoDetail = {};
+    ght['repo-detail'] = {};
 
-    ght.repoDetail.load = function loadProfile(repo) {   //// Get repo to equal 2nd part of hashsplit
+    ght['repo-detail'].load = function loadProfile(repo) {   //// Get repo to equal 2nd part of hashsplit
 
-        ght.repoHashSplit = window.location.hash.substr(6);
-        console.log(ght.repoHashSplit);
+        // ght.repoHashSplit = window.location.hash.substr(6);
+        // console.log(ght.repoHashSplit);
+        // $('#navbar').find('li#' + repo).remove();
 
-        appendRepoDetailNav();
+        if( $('#navbar').find('li#' + repo).length ) {
+            $('#navbar').find('li#' + repo).show();
+        }
+        else {
+            ght._appendRepoDetailNav(repo);
+        }
+
+
         console.log('how many?');
 
         ght.singleRepoInfo = {};
 
         $.ajax({
             type: 'GET',
-            url: 'https://api.github.com/repos/' + ght.ghUser.userName + '/' + ght.repoHashSplit,
+            url: 'https://api.github.com/repos/' + ght.ghUser.userName + '/' + repo,
             dataType: 'json',
             headers: {
                 Authorization: 'token ' + ght.ghToken
@@ -33,7 +41,16 @@
                     ght.singleRepoInfo.forks = data.forks;
                     ght.singleRepoInfo.created = data.created_at;
 
-                    appendSingleRepoDetail();
+                    appendSingleRepoDetail(
+                        ght.singleRepoInfo.url,
+                        ght.singleRepoInfo.name,
+                        ght.singleRepoInfo.description,
+                        ght.singleRepoInfo.issues,
+                        ght.ghUser.userName,
+                        ght.singleRepoInfo.stars,
+                        ght.singleRepoInfo.forks,
+                        ght.singleRepoInfo.created
+                    );
               console.log(ght.reposInfo);
             },
             error: function handleErrors(xhr) {
@@ -43,24 +60,28 @@
 
     };
 
-    function appendRepoDetailNav() {
+    ght._appendRepoDetailNav = function appendRepoDetailNav(repo) {
         $('#navbar')
-            .append( $('<li>')
-                .append( $('<a>').attr( {href: '#repo_' + ght.repoHashSplit} ).text('Repo Detail') )
+            .append( $('<li>').attr( {id: repo} )
+                .append( $('<a>').attr( {href: '#repo-detail_' + repo} ).text('Repo Detail') )
             );
-    }
+    };
 
-    function appendSingleRepoDetail() {
+    function appendSingleRepoDetail(url, name, description, issues, userName, stars, forks, created) {
         $('main')
             .append( $('<section>').attr( {id: 'repoDetail', class: 'view'} )
                 .append( $('<ul>')
-                    .append( $('<li>').text(ght.singleRepoInfo.name) )
-                    .append( $('<li>').text(ght.singleRepoInfo.description) )
-                    .append( $('<li>').text(ght.singleRepoInfo.issues) )
-                    .append( $('<li>').text(ght.ghUser.userName) )
-                    .append( $('<li>').text(ght.singleRepoInfo.stars) )
-                    .append( $('<li>').text(ght.singleRepoInfo.forks) )
-                    .append( $('<li>').text(ght.singleRepoInfo.created) )
+                    .append( $('<li>')
+                        .append( $('<a>').attr( {href: url, target: '_blank'} ).text(name) )
+                    )
+                    .append( $('<li>').text(description) )
+                    .append( $('<li>')
+                        .append( $('<a>').attr( {href: '#repo-issues_' + name} ).text(issues + ' open issues') )
+                    )
+                    .append( $('<li>').text('Owner: ' + userName) )
+                    .append( $('<li>').text('Star: ' + stars) )
+                    .append( $('<li>').text('Forks ' + forks) )
+                    .append( $('<li>').text('Created on: ' + created.substr(0, 10)) )
                 )
             );
 

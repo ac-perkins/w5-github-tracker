@@ -35,19 +35,6 @@
             console.log(ght.reposInfo);
 
             appendRepos();
-            // var nextView = $(this).attr('action');
-            //
-            // // maybe... if the Ajax call is succesful...
-            // // $.ajax({
-            // //   ...
-            // //   success: function dataSuccess(data) {
-            // //     // in here... go to nextView
-            // //   }
-            // // });
-            //
-            // window.location.hash = nextView;
-
-            // ght.appendProfile();
           },
           error: function handleErrors(xhr) {
             console.log( xhr );
@@ -65,7 +52,7 @@
           $('#repos-tbody')
               .append( $('<tr>')
                   .append( $('<td>')
-                      .append( $('<a>').attr( {href: '#repo_' + element.name} ).text(element.name) )
+                      .append( $('<a>').attr( {href: '#repo-detail_' + element.name} ).text(element.name) )
                   )
                   .append( $('<td>').text(element.stars) )
                   .append( $('<td>').text(element.open_issues) )

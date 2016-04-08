@@ -88,6 +88,7 @@
 
     // Custom Globals
     "globals"       : {
-      "$": true
+      "$": true,
+      "ght": true
       }        // additional predefined global variables
 }
