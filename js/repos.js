@@ -11,13 +11,14 @@
 
       $.ajax({
           type: 'GET',
-          url: 'https://api.github.com/user/repos',
+          url: 'https://api.github.com/users/' + ght.ghUser.userName + '/repos',
+          // url: 'https://api.github.com/user/repos',
           dataType: 'json',
           headers: {
               Authorization: 'token ' + ght.ghToken
           },
           success: function getGHRepoData(data) {
-
+            console.log(data);
             data.forEach(function(element) {
                 ght.reposInfo.push({
                   repo_id: element.id,
@@ -28,7 +29,8 @@
                   issues_url: element.issues_url,
                   description: element.description,
                   forks: element.forks,
-                  created: element.created_at
+                  created: element.created_at,
+                  owner: element.owner.login
                 });
 
             });

@@ -10,8 +10,8 @@
         // $('#navbar').find('li#' + repo).remove();
 
 
-            ght._appendRepoDetailNav(repo);
-        
+            // ght._appendRepoDetailNav(repo);
+
 
 
         console.log('how many?');
@@ -38,6 +38,8 @@
                     ght.singleRepoInfo.forks = data.forks;
                     ght.singleRepoInfo.created = data.created_at;
 
+                    ght._appendRepoDetailNav(repo);
+
                     appendSingleRepoDetail(
                         ght.singleRepoInfo.url,
                         ght.singleRepoInfo.name,
@@ -58,7 +60,7 @@
 
     ght._appendRepoDetailNav = function appendRepoDetailNav(repo) {
         $('#navbar')
-            .append( $('<li>').attr( {id: repo} )
+            .append( $('<li>').attr( {id: repo, class: 'repo_detail'} )
                 .append( $('<a>').attr( {href: '#repo-detail_' + repo} ).text('Repo Detail') )
             );
     };

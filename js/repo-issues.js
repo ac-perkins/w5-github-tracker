@@ -6,6 +6,8 @@
 
     ght['repo-issues'].load = function loadProfile(repo) {
 
+
+
         console.log("Loading Repo Issues");
 
         $.ajax({
@@ -50,26 +52,25 @@
 
 
     function appendIssues() {
-      console.log('appendIssues executing');
+        console.log('appendIssues executing');
 
-      $('main')
-          .append( $('<section>').attr( {id: 'issues', class: 'view'} )
-
-
-          .append( $('<table>').attr( {class: 'table table-striped table-bordered'} )
-              .append( $('<thead>')
-                  .append( $('<tr>')
-                      .append( $('<th>').text('Issue Title') )
-                      .append( $('<th>').text('Submitter') )
-                      .append( $('<th>').text('Close?') )
-                  )
-              )
-              .append( $('<tbody>').attr( {id: 'issues-tbody'} ) )
-          )
-        );
+        $('main')
+            .append( $('<section>').attr( {id: 'issues', class: 'view'} )
+                .append( $('<a>').attr( {href: 'https://github.com/' + ght.ghUser.userName + '/' + ght.singleRepoInfo.name + '/issues/', target: '_blank'} ).text(ght.singleRepoInfo.name) )
+                .append( $('<a>').attr( {class: 'btn btn-default', role: 'button', href: '#new-issue_' + ght.singleRepoInfo.name} ).text('New Issue') )
+                .append( $('<table>').attr( {class: 'table table-striped table-bordered'} )
+                    .append( $('<thead>')
+                        .append( $('<tr>')
+                            .append( $('<th>').text('Issue Title') )
+                            .append( $('<th>').text('Submitter') )
+                            .append( $('<th>').text('Close?') )
+                        )
+                    )
+                    .append( $('<tbody>').attr( {id: 'issues-tbody'} ) )
+                )
+            );
 
       repoIssues.forEach(function(element) {
-
 
         $('#issues-tbody')
             .append( $('<tr>')
