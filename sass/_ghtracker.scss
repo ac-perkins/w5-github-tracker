@@ -3,6 +3,16 @@ main {
   margin: 5% 10%;
 }
 
+nav {
+  border-bottom: none;
+}
+
+section {
+  font-size: 1.3em;
+  line-height: 1.5em;
+  padding: 10px;
+}
+
 .login {
   position: absolute;
   width: 100%;
@@ -12,4 +22,26 @@ main {
 
 .view {
   border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.avatar_img {
+  float: right;
+  top: 5px;
+  right: 5px;
+  height: 120px;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+#logout {
+  text-align: right;
+}
+
+#new-issue-btn {
+  float: right;
+}
+
+#issue-body {
+  height: 180px;
 }

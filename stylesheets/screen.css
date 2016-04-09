@@ -73,6 +73,18 @@ main {
 }
 
 /* line 6, ../sass/_ghtracker.scss */
+nav {
+  border-bottom: none;
+}
+
+/* line 10, ../sass/_ghtracker.scss */
+section {
+  font-size: 1.3em;
+  line-height: 1.5em;
+  padding: 10px;
+}
+
+/* line 16, ../sass/_ghtracker.scss */
 .login {
   position: absolute;
   width: 100%;
@@ -80,7 +92,33 @@ main {
   background-color: #fff;
 }
 
-/* line 13, ../sass/_ghtracker.scss */
+/* line 23, ../sass/_ghtracker.scss */
 .view {
   border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* line 28, ../sass/_ghtracker.scss */
+.avatar_img {
+  float: right;
+  top: 5px;
+  right: 5px;
+  height: 120px;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+/* line 37, ../sass/_ghtracker.scss */
+#logout {
+  text-align: right;
+}
+
+/* line 41, ../sass/_ghtracker.scss */
+#new-issue-btn {
+  float: right;
+}
+
+/* line 45, ../sass/_ghtracker.scss */
+#issue-body {
+  height: 180px;
 }

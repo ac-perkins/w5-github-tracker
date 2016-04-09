@@ -32,6 +32,7 @@
                 });
                 $('.repo-issues').empty();
                 $('#issues').remove();
+                //
                 appendRepoIssuesNav(repo);
                 appendIssues();
             },
@@ -61,7 +62,7 @@
         $('main')
             .append( $('<section>').attr( {id: 'issues', class: 'view'} )
                 .append( $('<a>').attr( {href: 'https://github.com/' + ght.ghUser.userName + '/' + ght.singleRepoInfo.name + '/issues/', target: '_blank'} ).text(ght.singleRepoInfo.name) )
-                .append( $('<a>').attr( {class: 'btn btn-default', role: 'button', href: '#new-issue_' + ght.singleRepoInfo.name} ).text('New Issue') )
+                .append( $('<a>').attr( {id: 'new-issue-btn', class: 'btn btn-default', role: 'button', href: '#new-issue_' + ght.singleRepoInfo.name} ).text('New Issue') )
                 .append( $('<table>').attr( {class: 'table table-striped table-bordered'} )
                     .append( $('<thead>')
                         .append( $('<tr>')

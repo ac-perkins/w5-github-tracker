@@ -83,8 +83,8 @@
                         .append( $('<a>').attr( {href: '#repo-issues_' + name} ).text(issues + ' open issues') )
                     )
                     .append( $('<li>').text('Owner: ' + userName) )
-                    .append( $('<li>').text('Star: ' + stars) )
-                    .append( $('<li>').text('Forks ' + forks) )
+                    .append( $('<li>').text('Stars: ' + stars) )
+                    .append( $('<li>').text('Forks: ' + forks) )
                     .append( $('<li>').text('Created on: ' + created.substr(0, 10)) )
                 )
             );
