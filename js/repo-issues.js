@@ -1,7 +1,7 @@
 (function(ght) {
   'use strict';
 
-    var repoIssues = [];
+
     ght['repo-issues'] = {};
 
     ght['repo-issues'].load = function loadProfile(repo) {
@@ -19,9 +19,10 @@
             },
             success: function getGHRepoIssues(data) {
                 console.log(data);
+                ght.repoIssues = [];
 
                 data.forEach(function(element) {
-                    repoIssues.push({
+                    ght.repoIssues.push({
                       issue_url: element.html_url,
                       title: element.title,
                       repo_url: element.repository_url,
@@ -29,6 +30,8 @@
                       submitter: element.user.login,
                     });
                 });
+                $('.repo-issues').empty();
+                $('#issues').remove();
                 appendRepoIssuesNav(repo);
                 appendIssues();
             },
@@ -43,10 +46,11 @@
     };
 
     function appendRepoIssuesNav(repo) {
-        $('#navbar')
-            .append( $('<li>').attr( {id: repo} )
-                .append( $('<a>').attr( {href: '#repo-issues_' + repo} ).text('Repo Issues') )
-            );
+      console.log();
+        $('.repo-issues').addClass('active')
+            // .append( $('<li>').attr( {id: repo} )
+                .append( $('<a>').attr( {href: '#repo-issues_' + repo} ).text('Repo Issues') );
+            // );
     }
 
 
@@ -70,7 +74,7 @@
                 )
             );
 
-      repoIssues.forEach(function(element) {
+      ght.repoIssues.forEach(function(element) {
 
         $('#issues-tbody')
             .append( $('<tr>')

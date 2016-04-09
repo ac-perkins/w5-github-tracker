@@ -3,12 +3,21 @@
 
     ght['new-issue'] = {};
 
-    ght['new-issue'].load = function loadProfile() {
+    ght['new-issue'].load = function loadProfile(repo) {
 
+        $('.new-issue').empty();
+        $('#newIssue').remove();
+        appendNewIssueNav(repo);
         appendNewIssueForm();
 
     };
 
+    function appendNewIssueNav(repo) {
+        $('.new-issue').addClass('active')
+            // .append( $('<li>').attr( {id: repo} )
+                .append( $('<a>').attr( {href: '#new-issues_' + repo} ).text('New Issue') );
+            // );
+    }
 
     function appendNewIssueForm() {
 

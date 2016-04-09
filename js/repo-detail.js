@@ -38,6 +38,12 @@
                     ght.singleRepoInfo.forks = data.forks;
                     ght.singleRepoInfo.created = data.created_at;
 
+                    $('.repo-detail').empty();
+                    $('#repoDetail').remove();
+                    $('.repo-issues').empty();
+                    $('#issues').remove();
+                    $('.new-issue').empty();
+                    $('#newIssue').remove();
                     ght._appendRepoDetailNav(repo);
 
                     appendSingleRepoDetail(
@@ -59,10 +65,10 @@
     };
 
     ght._appendRepoDetailNav = function appendRepoDetailNav(repo) {
-        $('#navbar')
-            .append( $('<li>').attr( {id: repo, class: 'repo_detail'} )
-                .append( $('<a>').attr( {href: '#repo-detail_' + repo} ).text('Repo Detail') )
-            );
+        $('.repo-detail').addClass('active')
+            // .append( $('<li>').attr( {id: repo, class: 'repo_detail'} )
+                .append( $('<a>').attr( {href: '#repo-detail_' + repo} ).text('Repo Detail') );
+            // );
     };
 
     function appendSingleRepoDetail(url, name, description, issues, userName, stars, forks, created) {

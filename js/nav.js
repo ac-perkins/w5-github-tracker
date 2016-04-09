@@ -19,6 +19,7 @@
 
           if (!ght.ghToken) {
               // if they try to load a bad view, default to login!    //login redirect
+              $('main').hide();
               window.location.hash = '#login';
           }
           // else if (ght[hashSplit[0]] && ght[hashSplit[0]].load) {
@@ -26,7 +27,7 @@
           // }
           else {
               // do stuff the view needs
-
+              $('main').show();
               var viewName = window.location.hash.substr(1);
               console.log(viewName);
 

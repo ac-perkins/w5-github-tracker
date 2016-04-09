@@ -66,3 +66,21 @@ a img {
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
+
+/* line 2, ../sass/_ghtracker.scss */
+main {
+  margin: 5% 10%;
+}
+
+/* line 6, ../sass/_ghtracker.scss */
+.login {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  background-color: #fff;
+}
+
+/* line 13, ../sass/_ghtracker.scss */
+.view {
+  border: 1px solid #ddd;
+}

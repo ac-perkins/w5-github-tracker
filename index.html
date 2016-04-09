@@ -13,21 +13,34 @@
     </head>
     <body>
 
+      <section id='login' class='login'>
+          <h2>GitHub API Login</h2>
+          <form id='login-form' action='#profile'>
+              <input id='login-field' type='text'> <input type='submit' class='btn btn-primary'>
+          </form>
+      </section>
+
+
       <main>
 
         <nav>
-            <ul id= 'navbar' class='nav nav-tabs'>
+            <ul id='navbar' class='nav nav-tabs'>
                 <li class='active'> <a href='#profile'>My Profile</a> </li>
                 <li> <a href='#repos'>Repos</a> </li>
+                <li class='repo-detail'></li>
+                <li class='repo-issues'></li>
+                <li class='new-issue'></li>
+                <!-- <section id='navgen' class='nav nav-tabs'>
+                </section> -->
             </ul>
         </nav>
 
-        <section id='login' class='login'>
+        <!-- <section id='login' class='login'>
             <h2>GitHub API Login</h2>
             <form id='login-form' action='#profile'>
                 <input id='login-field' type='text'> <input type='submit' class='btn btn-primary'>
             </form>
-        </section>
+        </section> -->
 
         <section id='profile' class='view'>
             <ul>
