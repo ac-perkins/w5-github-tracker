@@ -1,66 +1,49 @@
 (function(ght) {
   'use strict';
 
+    ght.repos = {};
 
-  ght.repos = {};
+    ght.repos.load = function loadRepos() {
 
-  ght.repos.load = function loadRepos() {
+        $('#repos-tbody').empty();
 
-      $('#repos-tbody').empty();
-      ght.reposInfo = [];
+        $.ajax({
+            type: 'GET',
+            url: 'https://api.github.com/users/' + ght.ghUser.userName + '/repos',
+            dataType: 'json',
+            headers: {
+                Authorization: 'token ' + ght.ghToken
+            },
+            success: function getGHRepoData(repoData) {
 
-      $.ajax({
-          type: 'GET',
-          url: 'https://api.github.com/users/' + ght.ghUser.userName + '/repos',
-          // url: 'https://api.github.com/user/repos',
-          dataType: 'json',
-          headers: {
-              Authorization: 'token ' + ght.ghToken
-          },
-          success: function getGHRepoData(data) {
-            console.log(data);
-            data.forEach(function(element) {
-                ght.reposInfo.push({
-                  repo_id: element.id,
-                  name: element.name,
-                  url: element.html_url,
-                  stars: element.stargazers_count,
-                  open_issues: element.open_issues,
-                  issues_url: element.issues_url,
-                  description: element.description,
-                  forks: element.forks,
-                  created: element.created_at,
-                  owner: element.owner.login
-                });
+                $('.repo-issues').empty();
+                $('#issues').remove();
+                $('.new-issue').empty();
+                $('#newIssue').remove();
+                ght._appendRepos(repoData);
+            },
+            error: function handleErrors(xhr) {
+              console.log(xhr);
+            },
+          });
+    };
 
-            });
-            console.log(ght.reposInfo);
+        ght._appendRepos = function appendRepos(data) {
+          if(data === undefined) {
+            data = [];
+          }
 
-            appendRepos();
-          },
-          error: function handleErrors(xhr) {
-            console.log( xhr );
-          },
-        });
-
-      console.log('loading repos');
-
-  };
-
-
-      function appendRepos() {
-        console.log(ght.repos);
-        ght.reposInfo.forEach(function(element) {
-          $('#repos-tbody')
-              .append( $('<tr>')
-                  .append( $('<td>')
-                      .append( $('<a>').attr( {href: '#repo-detail_' + element.name} ).text(element.name) )
-                  )
-                  .append( $('<td>').text(element.stars) )
-                  .append( $('<td>').text(element.open_issues) )
-              );
-        });
-      }
+          data.forEach( function(data) {
+            $('#repos-tbody')
+                .append( $('<tr>')
+                    .append( $('<td>')
+                        .append( $('<a>').attr( {href: '#repo-detail_' + data.name} ).text(data.name) )
+                    )
+                    .append( $('<td>').text(data.stargazers_count) )
+                    .append( $('<td>').text(data.open_issues) )
+                );
+          });
+        };
 
 
   window.ght = ght;

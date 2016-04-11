@@ -4,10 +4,7 @@
     ght.profile = {};
 
     ght.profile.load = function loadProfile() {
-        // Do an ajax call to get article data
 
-
-        console.log('loading profile');
         $('#profile ul').empty();
         appendProfile(
             ght.ghUser.url,
@@ -32,10 +29,7 @@
             .append( $('<li>').text('Repos: ' + repos) )
             .append( $('<li>').text('Followers: ' + followers + ' (following ' + following + ')') )
             .append( $('<li>').text('Account created: ' + created.substr(0, 10)) );
-
-
     }
-
 
 
   window.ght = ght;

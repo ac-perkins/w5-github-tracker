@@ -1,44 +1,37 @@
 (function(ght) {
   'use strict';
 
-  window.addEventListener('hashchange', function hashNav() {
+    window.addEventListener('hashchange', function hashNav() {
           doNav();
       });
 
-      function doNav() {
-          $('.view').hide();
-          var newView = $( window.location.hash ).show();
+    function doNav() {
 
-          $('nav li').removeClass('active');
+        $('.view').hide();
+        $( window.location.hash ).show();
 
-          $('nav a[href="' + window.location.hash + '"]').closest('li').addClass('active');
+        $('nav li').removeClass('active');
 
-          // var hashSplit = window.location.hash.substr(1).split('_');
-          var hashSplit = window.location.hash.substr(1).split(/_(.*)?/);
-          console.log(hashSplit);
+        $('nav a[href="' + window.location.hash + '"]').closest('li').addClass('active');
 
-          if (!ght.ghToken) {
-              // if they try to load a bad view, default to login!    //login redirect
-              $('main').hide();
-              window.location.hash = '#login';
-          }
-          // else if (ght[hashSplit[0]] && ght[hashSplit[0]].load) {
-          //     ght[hashSplit[0]].load(hashSplit[1]);
-          // }
-          else {
-              // do stuff the view needs
-              $('main').show();
-              var viewName = window.location.hash.substr(1);
-              console.log(viewName);
+        var hashSplit = window.location.hash.substr(1).split(/_(.*)?/);
+        console.log(hashSplit);
 
-              if (ght[hashSplit[0]] && ght[hashSplit[0]].load) {
-                  ght[hashSplit[0]].load(hashSplit[1]);
-              }
-          }
-      }
+        if (!ght.ghToken) {
+            $('main').hide();
+            window.location.hash = '#login';
+        }
+        else {
+            $('main').show();
+            var viewName = window.location.hash.substr(1);
+            console.log(viewName);
 
+            if (ght[hashSplit[0]] && ght[hashSplit[0]].load) {
+                ght[hashSplit[0]].load(hashSplit[1]);
+            }
+        }
+    }
 
-      // navigate to a view when the page loads
       ght.init = function() {
           doNav();
       };

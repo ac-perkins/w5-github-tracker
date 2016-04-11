@@ -1,16 +1,34 @@
+body {
+  // background-color: #F5F8FA;
+}
 
 main {
-  margin: 5% 10%;
+  margin: 5% 20%;
 }
 
 nav {
-  border-bottom: none;
+  border-color: #E5F2F7;
+  margin-left: 20px;
 }
+
 
 section {
   font-size: 1.3em;
   line-height: 1.5em;
   padding: 10px;
+}
+
+table {
+  background-color: #F5F8FA;
+}
+
+.nav {
+  border-color: #E5F2F7;
+}
+
+.nav-tabs {
+  border-color: #E5F2F7;
+  border-bottom: none;
 }
 
 .login {
@@ -21,7 +39,7 @@ section {
 }
 
 .view {
-  border: 1px solid #ddd;
+  border: 1px solid #E5F2F7;
   border-radius: 5px;
 }
 
@@ -34,14 +52,29 @@ section {
   margin-right: 5px;
 }
 
+#login-container {
+  width: 300px;
+  margin: 10% auto;
+}
+
 #logout {
   text-align: right;
 }
 
 #new-issue-btn {
   float: right;
+  margin-bottom: 2%;
+}
+
+#issue-title {
+  margin: 2% 0;
 }
 
 #issue-body {
   height: 180px;
+  margin-bottom: 2%;
+}
+
+#submit-btn {
+  float: right;
 }

@@ -1,0 +1,6 @@
+{
+    "name": "github-tracker",
+    "dependencies": {
+        "jquery": "^1.12.3"
+    }
+}

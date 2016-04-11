@@ -8,8 +8,8 @@
     $('#login-form').submit(function (event) {
         event.preventDefault();
         ght.ghToken = $('#login-field').val();
-        // console.log('login submit works');
         console.log(ght.ghToken);
+        localStorage.setItem('token', ght.ghToken);
 
       $.ajax({
           type: 'GET',
@@ -34,29 +34,20 @@
 
             $('#login').hide();
 
-            var nextView = $(this).attr('action');
+            window.location.hash = $(this).attr('action');
 
-            // maybe... if the Ajax call is succesful...
-            // $.ajax({
-            //   ...
-            //   success: function dataSuccess(data) {
-            //     // in here... go to nextView
-            //   }
-            // });
-
-            window.location.hash = nextView;
-
-            // ght.appendProfile();
           },
           error: function handleErrors(xhr) {
-            console.log( xhr );
+            console.log(xhr);
+            $('#login-container p').remove();
+            $('#login-container')
+                .append($('<p>').text('Please enter a valid GitHub token.'));
           },
         });
     });
 
     $('#logout').click( function() {
         ght.ghToken = null;
-        // window.location.hash = '#login';
     });
 
 
