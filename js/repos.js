@@ -30,7 +30,7 @@
 
         ght._appendRepos = function appendRepos(data) {
           if(data === undefined) {
-            data = [];
+            data = [ {name: 'undefined', stargazers_count: 'undefined', open_issues: 'undefined'} ];
           }
 
           data.forEach( function(data) {
